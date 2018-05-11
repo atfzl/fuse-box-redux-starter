@@ -1,3 +1,3 @@
 export default function() {
-  return 'foo file';
+  return 'Hello ui';
 }
