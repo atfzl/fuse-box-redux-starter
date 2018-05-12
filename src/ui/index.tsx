@@ -1,3 +1,5 @@
-import foo from '~/ui/hello';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import HelloWorld from '~/ui/hello';
 
-document.body.innerHTML = foo();
+ReactDOM.render(<HelloWorld />, document.getElementById('app'));
