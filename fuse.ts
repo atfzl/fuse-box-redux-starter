@@ -11,6 +11,7 @@ const fuse = FuseBox.init({
   homeDir: 'src/',
   target: 'browser@es6',
   output: 'dist/$name.js',
+  sourceMaps: true,
   plugins: [
     WebIndexPlugin({
       bundles: [BUNDLE.ui],
