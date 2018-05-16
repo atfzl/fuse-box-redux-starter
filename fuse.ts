@@ -1,6 +1,4 @@
-import * as express from 'express';
 import { FuseBox, WebIndexPlugin } from 'fuse-box';
-import * as path from 'path';
 
 const BUNDLE = {
   ui: 'ui/app',
@@ -20,16 +18,7 @@ const fuse = FuseBox.init({
   ],
 });
 
-fuse.dev({ root: false }, server => {
-  const app = server.httpServer.app as express.Express;
-
-  const dist = path.resolve(__dirname, './dist');
-
-  app.use('/', express.static(dist));
-  app.get('*', (__, res) => {
-    return res.sendFile(path.join(dist, 'index.html'));
-  });
-});
+fuse.dev();
 
 fuse
   .bundle(BUNDLE.ui)

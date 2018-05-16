@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "inlineSourceMap": true,
     "target": "es5",
     "jsx": "react",
     "module": "commonjs",
