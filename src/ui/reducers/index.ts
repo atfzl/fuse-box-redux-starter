@@ -1,9 +1,11 @@
-import { foo } from './foo';
+import { combineReducers } from 'redux';
+import { StateType } from 'typesafe-actions';
+import { IActions as IHomeActions, reducers as homeReducers } from './home';
 
-console.log('reducers fie run');
+export const rootReducer = combineReducers({
+  home: homeReducers,
+});
 
-export default (): { [k: string]: any } => {
-  console.log('inside reduce');
-  console.log(foo());
-  return { originalReducer: foo() };
-};
+export type IRootState = StateType<typeof rootReducer>;
+
+export type IRootAction = IHomeActions;

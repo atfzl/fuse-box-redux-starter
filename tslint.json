@@ -3,6 +3,13 @@
   "rules": {
     "object-literal-sort-keys": false,
     "no-submodule-imports": false,
-    "no-implicit-dependencies": false
+    "no-implicit-dependencies": false,
+    "ordered-imports": [
+      true,
+      {
+        "import-sources-order": "uppercase-first",
+        "named-imports-order": "any"
+      }
+    ]
   }
 }

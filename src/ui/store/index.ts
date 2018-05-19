@@ -1,16 +1,24 @@
-import getRootReducer from '~/ui/reducers';
+import { Middleware, Store, applyMiddleware, createStore } from 'redux';
+import ReduxLogger from 'redux-logger';
+import { IRootAction, IRootState, rootReducer } from '~/ui/reducers';
 
-const configureStore = () => {
-  console.error('creating a new store');
+const configureStore = (): Store<IRootState, IRootAction> => {
+  const middlewares: Middleware[] = [];
 
-  const obj = {
-    replaceReducer(newRootReducer: { [k: string]: any }) {
-      obj.rootReducer = newRootReducer;
-    },
-    rootReducer: getRootReducer(),
-  };
+  if (process.env.NODE_ENV !== 'production') {
+    middlewares.push(ReduxLogger);
+  }
 
-  return obj;
+  return createStore<IRootState, IRootAction, any, any>(
+    rootReducer,
+    applyMiddleware(...middlewares),
+  );
 };
 
-export default configureStore();
+const store = configureStore();
+
+if (process.env.NODE_ENV !== 'production') {
+  (window as any).store = store;
+}
+
+export default store;

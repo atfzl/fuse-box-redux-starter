@@ -39,7 +39,7 @@ const customizedHMRPlugin = (
       Loader.dynamic(path, content);
 
       if (isDependentOnReducers) {
-        store.replaceReducer(require('~/ui/reducers').default());
+        store.replaceReducer(require('~/ui/reducers').rootReducer);
       }
 
       if (Loader.mainFile) {

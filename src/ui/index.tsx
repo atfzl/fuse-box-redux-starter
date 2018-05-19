@@ -1,8 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import HelloWorld from '~/ui/hello';
-import { setStatefulModules } from './hmr';
+import { Provider } from 'react-redux';
+import { setStatefulModules } from '~/ui/hmr';
+import store from '~/ui/store';
 
-ReactDOM.render(<HelloWorld />, document.getElementById('app'));
+ReactDOM.render(
+  <Provider store={store as any}>
+    <div>Hello</div>
+  </Provider>,
+  document.getElementById('app'),
+);
 
 setStatefulModules(name => /^ui\/hmr/.test(name) || /^ui\/store/.test(name));
