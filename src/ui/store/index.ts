@@ -1,11 +1,14 @@
 import { routerMiddleware } from 'react-router-redux';
 import { Middleware, Store, applyMiddleware, createStore } from 'redux';
 import ReduxLogger from 'redux-logger';
-import { IRootAction, IRootState, rootReducer } from '~/ui/reducers';
+import { createEpicMiddleware } from 'redux-observable';
+import { IRootAction, IRootState, rootEpic, rootReducer } from '~/ui/reducers';
 import history from '~/ui/services/history';
 
+export const epicMiddleware = createEpicMiddleware(rootEpic);
+
 const configureStore = (): Store<IRootState, IRootAction> => {
-  const middlewares: Middleware[] = [routerMiddleware(history)];
+  const middlewares: Middleware[] = [routerMiddleware(history), epicMiddleware];
 
   if (process.env.NODE_ENV !== 'production') {
     middlewares.push(ReduxLogger);

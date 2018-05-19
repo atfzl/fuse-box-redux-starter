@@ -1,5 +1,5 @@
 import { Loader } from 'fuse-box/modules/fuse-loader';
-import store from '~/ui/store';
+import store, { epicMiddleware } from '~/ui/store';
 import isDependantOn from './isDependantOn';
 
 const customizedHMRPlugin = (
@@ -39,7 +39,10 @@ const customizedHMRPlugin = (
       Loader.dynamic(path, content);
 
       if (isDependentOnReducers) {
-        store.replaceReducer(require('~/ui/reducers').rootReducer);
+        const { rootReducer, rootEpic } = require('~/ui/reducers');
+
+        store.replaceReducer(rootReducer);
+        epicMiddleware.replaceEpic(rootEpic);
       }
 
       if (Loader.mainFile) {
