@@ -9,6 +9,7 @@ const fuse = FuseBox.init({
   homeDir: 'src/',
   target: 'browser@es6',
   output: 'dist/$name.js',
+  emitHMRDependencies: true,
   sourceMaps: true,
   plugins: [
     WebIndexPlugin({
