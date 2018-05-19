@@ -1,3 +1,4 @@
+import { LocationChangeAction, RouterAction } from 'react-router-redux';
 import { ActionType } from 'typesafe-actions';
 import actionCreatorFactory from 'typescript-fsa';
 
@@ -14,4 +15,7 @@ const actions = {
 
 export default actions;
 
-export type IActions = ActionType<typeof actions>;
+export type IActions =
+  | RouterAction
+  | LocationChangeAction
+  | ActionType<typeof actions>;
