@@ -7,8 +7,7 @@
     "ordered-imports": [
       true,
       {
-        "import-sources-order": "uppercase-first",
-        "named-imports-order": "any"
+        "named-imports-order": "lowercase-last"
       }
     ]
   }
