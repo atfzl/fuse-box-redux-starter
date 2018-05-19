@@ -18,7 +18,7 @@ const fuse = FuseBox.init({
   ],
 });
 
-fuse.dev();
+fuse.dev({ fallback: 'index.html' });
 
 fuse
   .bundle(BUNDLE.ui)
