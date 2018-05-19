@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Link, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
-import { setStatefulModules } from '~/ui/hmr';
+import '~/ui/hmr';
 import history from '~/ui/services/history';
 import store from '~/ui/store';
 
@@ -19,11 +19,4 @@ ReactDOM.render(
     </ConnectedRouter>
   </Provider>,
   document.getElementById('app'),
-);
-
-setStatefulModules(
-  name =>
-    /^ui\/hmr/.test(name) ||
-    /^ui\/store/.test(name) ||
-    /^ui\/services\/history/.test(name),
 );

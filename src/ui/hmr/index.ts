@@ -66,3 +66,10 @@ export const setStatefulModules = (
     Loader.addPlugin(customizedHMRPlugin(isStateful) as any);
   }
 };
+
+setStatefulModules(
+  name =>
+    /^ui\/hmr/.test(name) ||
+    /^ui\/store/.test(name) ||
+    /^ui\/services\/history/.test(name),
+);
