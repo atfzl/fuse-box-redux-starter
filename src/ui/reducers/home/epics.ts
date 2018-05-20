@@ -11,6 +11,11 @@ const epics: IEpic[] = [
       mergeMap(action => {
         // tslint:disable-next-line:no-console
         console.log('payload is', action.payload);
+
+        fetch('/api/')
+          .then(d => d.json())
+          .then(console.log);
+
         return empty();
       }),
     ),

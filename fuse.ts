@@ -1,5 +1,6 @@
 import * as express from 'express';
 import { FuseBox, WebIndexPlugin } from 'fuse-box';
+import * as proxy from 'http-proxy-middleware';
 import * as path from 'path';
 
 const BUNDLE = {
@@ -27,6 +28,16 @@ fuse.dev({ root: false }, server => {
   const dist = path.resolve(__dirname, './dist');
 
   app.use('/', express.static(dist));
+  app.use(
+    '/api',
+    proxy({
+      target: 'http://localhost:3039',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/api': '/',
+      },
+    }),
+  );
   app.get('*', (req, res, next) => {
     if (req.path.match(/\.map$/i)) {
       return next();
