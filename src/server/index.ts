@@ -6,7 +6,7 @@ const app = express();
 
 app.use(cors());
 
-app.get('/', (__: express.Request, res: express.Response) => {
+app.get('/api', (__: express.Request, res: express.Response) => {
   return res.json({ data: 'Hello Server' });
 });
 

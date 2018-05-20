@@ -33,9 +33,6 @@ fuse.dev({ root: false }, server => {
     proxy({
       target: 'http://localhost:3039',
       changeOrigin: true,
-      pathRewrite: {
-        '^/api': '/',
-      },
     }),
   );
   app.get('*', (req, res, next) => {
