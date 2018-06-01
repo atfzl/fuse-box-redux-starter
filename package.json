@@ -1,0 +1,9 @@
+{
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "concurrently 'cd ui && yarn start' 'cd server && yarn start' "
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1"
+  }
+}
