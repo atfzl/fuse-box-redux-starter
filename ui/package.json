@@ -8,7 +8,6 @@
     "start": "ts-node fuse.ts"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.4",
     "@types/express": "^4.11.1",
     "@types/http-proxy-middleware": "^0.17.4",
     "@types/ramda": "types/npm-ramda#dist",
@@ -27,7 +26,6 @@
     "typescript": "^2.8.3"
   },
   "dependencies": {
-    "cors": "^2.8.4",
     "express": "^4.16.3",
     "history": "^4.7.2",
     "http-proxy-middleware": "^0.18.0",
