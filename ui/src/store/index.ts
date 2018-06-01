@@ -2,8 +2,8 @@ import { routerMiddleware } from 'react-router-redux';
 import { Middleware, Store, applyMiddleware, createStore } from 'redux';
 import ReduxLogger from 'redux-logger';
 import { createEpicMiddleware } from 'redux-observable';
-import { IRootAction, IRootState, rootEpic, rootReducer } from '~/ui/reducers';
-import history from '~/ui/services/history';
+import { IRootAction, IRootState, rootEpic, rootReducer } from '~/reducers';
+import history from '~/services/history';
 
 export const epicMiddleware = createEpicMiddleware(rootEpic);
 

@@ -1,5 +1,5 @@
 import { Loader } from 'fuse-box/modules/fuse-loader';
-import store, { epicMiddleware } from '~/ui/store';
+import store, { epicMiddleware } from '~/store';
 import isDependantOn from './isDependantOn';
 
 const customizedHMRPlugin = (
@@ -26,11 +26,11 @@ const customizedHMRPlugin = (
       const isDependentOnReducers = isDependantOn(
         dependants,
         path,
-        'ui/reducers/index.js',
+        'reducers/index.js',
       );
 
       Loader.flush(fileName => {
-        if (isDependentOnReducers && fileName === 'ui/reducers/index.js') {
+        if (isDependentOnReducers && fileName === 'reducers/index.js') {
           return true;
         }
         return !isModuleStateful(fileName);
@@ -39,7 +39,7 @@ const customizedHMRPlugin = (
       Loader.dynamic(path, content);
 
       if (isDependentOnReducers) {
-        const { rootReducer, rootEpic } = require('~/ui/reducers');
+        const { rootReducer, rootEpic } = require('~/reducers');
 
         store.replaceReducer(rootReducer);
         epicMiddleware.replaceEpic(rootEpic);
@@ -69,7 +69,5 @@ export const setStatefulModules = (
 
 setStatefulModules(
   name =>
-    /^ui\/hmr/.test(name) ||
-    /^ui\/store/.test(name) ||
-    /^ui\/services\/history/.test(name),
+    /^hmr/.test(name) || /^store/.test(name) || /^services\/history/.test(name),
 );

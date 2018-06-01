@@ -3,10 +3,7 @@ import { FuseBox, WebIndexPlugin } from 'fuse-box';
 import * as proxy from 'http-proxy-middleware';
 import * as path from 'path';
 
-const BUNDLE = {
-  ui: 'ui/app',
-  server: 'server/app',
-};
+const BUNDLE = 'ui';
 
 const fuse = FuseBox.init({
   homeDir: 'src/',
@@ -16,8 +13,8 @@ const fuse = FuseBox.init({
   sourceMaps: true,
   plugins: [
     WebIndexPlugin({
-      bundles: [BUNDLE.ui],
-      template: 'src/ui/index.html',
+      bundles: [BUNDLE],
+      template: 'src/index.html',
     }),
   ],
 });
@@ -44,16 +41,9 @@ fuse.dev({ root: false }, server => {
 });
 
 fuse
-  .bundle(BUNDLE.ui)
-  .instructions(' > ui/index.tsx')
+  .bundle(BUNDLE)
+  .instructions(' > index.tsx')
   .hmr()
-  .watch('ui/**');
-
-fuse
-  .bundle(BUNDLE.server)
-  .target('server@esnext')
-  .instructions(' > [server/index.ts]')
-  .watch('server/**')
-  .completed(proc => proc.start());
+  .watch();
 
 fuse.run();

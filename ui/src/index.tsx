@@ -3,9 +3,9 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Link, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
-import '~/ui/hmr';
-import history from '~/ui/services/history';
-import store from '~/ui/store';
+import '~/hmr';
+import history from '~/services/history';
+import store from '~/store';
 
 ReactDOM.render(
   <Provider store={store as any}>
